@@ -10,6 +10,7 @@ const DoctorForm = ({ operation, doctor, onSubmit, onClose }) => {
     let doctorValues = {
         id: doctor? doctor.id : undefined,
         name: doctor ? doctor.name : "",
+        imageUrl: doctor ? doctor.imageUrl : "",
         specialty: doctor ? doctor.specialty :  "",
         experience: doctor ? doctor.experience : "",
         yearsOfExperience: doctor ? doctor.yearsOfExperience : 0,
@@ -64,10 +65,11 @@ const DoctorForm = ({ operation, doctor, onSubmit, onClose }) => {
                         <input type="text" id="yearsOfExperience" className="form-control" placeholder="Años de experiencia" 
                             defaultValue={doctorValues.yearsOfExperience} onChange={handleChange}/>
                     </div>
-                    <div className="mb-3">
-                        <input type="email" id="email" className="form-control" placeholder="Email" 
-                            defaultValue={doctorValues.email} onChange={handleChange}/>
-                    </div>
+                    {operation === 1 &&
+                        <div className="mb-3">
+                            <input type="email" id="email" className="form-control" placeholder="Email" onChange={handleChange}/>
+                        </div>
+                    }
                     <button type="submit" className="btn btn-primary">{operation === 1 ? "Crear" : "Actualizar"}</button>
                     <button onClick={onClose} className="btn btn-primary">Cancelar</button>
                 </form>
